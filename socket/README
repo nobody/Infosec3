@@ -1,0 +1,9 @@
+You should revise speak.c to attack listen program.
+To make TA life easy,
+TA will just test your programs in apache.
+
+Run listen 7000 and listen1 6000 in apache
+and run your attack program also in apache something like:
+attack apache 7000 bufsize offset
+
+

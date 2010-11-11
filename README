@@ -1,26 +1,21 @@
+Server1 and server2 exploits:
+    To compile the exploits, run make.
 
-Here, I give you a simple example: attack.c and server.c
-You should use "cc" to compile them. Do not use gcc here.
-cc -o attack attack.c  
-cc -o server server.c
+    Both exploits take the same arguments, so they will only be listed here.
+        -b <buffer size>
+            This is the size of the argument to be passed to the server
+        -e <environment variable size>
+            This is the size of the environment variable containing the shellcode.
+                It will be filled with NOPs with the shellcode at the end.
+        -a <alignment>
+            This is an alignment agjustment for the NOPs in the environment variable.
+        -o <offset>
+            This is an offset for the address we are jumping to.
 
-If you are in apache:  run ./attack or ./attack -20    just try 
-Try different offset if it is not working for you such as -80.
-It will work.
-After you enter SHELL successfully, you can type "exit" to exit it.
+    exploit1:
+        To successfully exploit server1, call 
+            ./exploit1 -b 388 -a 2
 
-Do not use the attack program to write your exploit code. 
-This program is not good - not flexible. Think about why?
-You should use one of the programs listed
-in the document linked in the course web page. Find it yourself.
-
-Two programs server1 and server2 were compiled by cc
-You need to exploit server1 and server2
-
-I did not show you the complete source code of server1.c.
-But I have given you the complete source code of
-server2.c.
-
-TA will login to apache to test your programs so make sure that your
-programs work in Apache.
-
+    exploit2:
+        To successfully exploit server2, call
+            ./exploit2 -b 424 -a 2

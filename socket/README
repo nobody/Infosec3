@@ -1,9 +1,34 @@
-You should revise speak.c to attack listen program.
-To make TA life easy,
-TA will just test your programs in apache.
 
-Run listen 7000 and listen1 6000 in apache
-and run your attack program also in apache something like:
-attack apache 7000 bufsize offset
+listen and listen1 exploits:
+    To compile the exploits, run make.
 
+    Both exploits take the same arguments, so they will only be listed here.
+        <hostname> <port number> <buffer size> <offset>
 
+        <hostname>
+            The host on which listener is running.
+        <port number>
+            The port on which listener is listening.
+        <buffer size>
+            This is the size of the string to be passed to the listener.
+        <offset>
+            This is an offset (from the attacker's %sp) for the address we are jumping to.
+
+    attack:
+        To successfully exploit listen, call 
+            ./listen 12345
+        in one shell, and
+            ./attack apache 12345
+        in another
+
+    attack1:
+        To successfully exploit listen1, call 
+            ./listen1 12345
+        in one shell, and
+            ./attack1 apache 12345
+        in another
+
+    The default values of buffer size and offset should result in a shell running.
+        The defaults are as follows:
+            attack:  buffersize = 400, offset = 1600
+            attack1: buffersize = 300, offset = 1200
